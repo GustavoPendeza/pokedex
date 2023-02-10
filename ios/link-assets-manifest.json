@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Pokemon Classic Regular.ttf",
+      "sha1": "7d15f708ed560378032f0311847ef7580adaa4b3"
+    },
+    {
+      "path": "assets/fonts/Retro Gaming.ttf",
+      "sha1": "0da0a247a6df39fe664d84dd73b6dba81ef98bf5"
+    }
+  ]
+}
