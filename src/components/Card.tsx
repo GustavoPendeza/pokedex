@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Alert, Image, View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import Feather from 'react-native-vector-icons/Feather';
 import colors from 'tailwindcss/colors'
 import { api } from "../lib/axios";
 import { typeColors } from "../utils/type-colors";
@@ -28,13 +29,16 @@ export function Card({ name }: Props) {
     const { navigate } = useNavigation();
     const [pokemon, setPokemon] = useState<Pokemon | null>(null)
 
+    /**
+     * Retorna as informações de um Pokémon específico
+     */
     async function fetchPokemon() {
         try {
             setLoading(true)
             const response = await api.get(`/pokemon/${name}`);
             setPokemon(response.data);
         } catch (error) {
-            Alert.alert('Ops', 'Não foi possível carregar os Cards.');
+            Alert.alert(':(', 'Não foi possível carregar os Cards.');
             console.log(error);
         } finally {
             setLoading(false)
@@ -70,10 +74,9 @@ export function Card({ name }: Props) {
                                             className="h-5/6 w-4/6 mt-5"
                                         />
                                         :
-                                        <Image
-                                            source={{ uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png' }}
-                                            className="h-5/6 w-4/6 mt-5"
-                                        />
+                                        <View className="mt-5">
+                                            <Feather name="camera-off" size={50} color={colors.white} />
+                                        </View>
                                 }
 
                                 <View className="absolute top-0 right-2">

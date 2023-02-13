@@ -7,6 +7,8 @@ import { Loading } from "../components/Loading";
 import { api } from "../lib/axios";
 import { TypePokemon } from "../components/TypePokemon";
 import { StatsBar } from "../components/StatsBar";
+import Feather from 'react-native-vector-icons/Feather';
+import colors from 'tailwindcss/colors'
 
 interface Params {
     pokemonName: string;
@@ -44,13 +46,16 @@ export function Details() {
     const { pokemonName } = route.params as Params;
     const [pokemon, setPokemon] = useState<Pokemon | null>(null)
 
+    /**
+     * Retorna as informações de um Pokémon específico
+     */
     async function fetchPokemon() {
         try {
             setLoading(true);
             const response = await api.get(`/pokemon/${pokemonName}`);
             setPokemon(response.data);
         } catch (error) {
-            Alert.alert('Ops', 'Não foi possível carregar os dados do Pokémon.');
+            Alert.alert(':(', 'Não foi possível carregar os dados do Pokémon.');
             console.log(error);
         } finally {
             setLoading(false);
@@ -82,10 +87,9 @@ export function Details() {
                                 className="h-full w-8/12 absolute mt-8"
                             />
                             :
-                            <Image
-                                source={{ uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png' }}
-                                className="h-full w-8/12 absolute mt-8"
-                            />
+                            <View className="mr-10">
+                                <Feather name="camera-off" size={100} color={colors.white} />
+                            </View>
                     }
                     <View className="absolute top-0 right-2">
                         <Text className="text-white text-xl font-pokemon">#{pokemon?.id}</Text>
@@ -122,7 +126,7 @@ export function Details() {
 
                 <View className="items-center py-4">
                     <Text className="text-white text-2xl font-retro capitalize">
-                        Status Base
+                       <Feather name="bar-chart" size={30} color={colors.white} /> Status Base
                     </Text>
                 </View>
 
