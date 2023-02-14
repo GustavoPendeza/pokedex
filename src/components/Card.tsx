@@ -18,6 +18,7 @@ interface Type {
 
 interface Pokemon {
     id: number;
+    name: string;
     types: Type[]
     sprites: {
         front_default: string;
@@ -87,10 +88,10 @@ export function Card({ name }: Props) {
                 </View>
                 <View className="h-1/6 items-center px-1">
                     <Text className="text-white text-lg font-retro capitalize" numberOfLines={1}>
-                        {name}
+                        {pokemon?.name}
                     </Text>
                 </View>
             </View>
-        </TouchableOpacity >
+        </TouchableOpacity>
     )
 }

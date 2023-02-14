@@ -3,15 +3,13 @@ import { Header } from "../components/Header";
 import { PokemonList } from "../components/PokemonList";
 
 export function Home() {
-    
-
     return (
         <View className="flex-1 bg-background">
 
-            <Header />
+            <Header searchPage={false} />
 
             <PokemonList />
-            
+
         </View>
     )
 }

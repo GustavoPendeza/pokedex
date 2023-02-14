@@ -34,8 +34,10 @@ Projeto de uma Pokédex em React Native utilizando <a href="https://pokeapi.co" 
 
 ### Ícones
 
-<div>
-    <a href="https://github.com/oblador/react-native-vector-icons">
-        Vector Icons
-    </a>
-</div>
+<a href="https://github.com/oblador/react-native-vector-icons">
+    Vector Icons
+</a>
+
+<a href="https://www.pngall.com/pokeball-png/download/40242">
+    Pokéball usada na tela de pesquisa
+</a>

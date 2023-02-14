@@ -51,11 +51,12 @@ export function PokemonList() {
      */
     const onSubmitPageHandler = ((pageNumber: number) => {
         if (pageNumber >= 1 && pageNumber <= totalPages) {
-            setPage(pageNumber-1)
+            pageNumber = Math.floor(pageNumber)
+            setPage(pageNumber - 1)
         } else {
             Alert.alert("Ops", "Essa página não existe. Verifique se digitou corretamente.")
         }
-        
+
     })
 
     /**
@@ -93,11 +94,11 @@ export function PokemonList() {
                     <Text className="text-white">{page + 1}</Text> de <Text className="text-white">{totalPages}</Text> páginas
                 </Text>
 
-                <TextInput 
-                    className="border border-zinc-500 rounded-lg w-1/3 text-white p-2" 
+                <TextInput
+                    className="border border-zinc-500 rounded-lg w-1/3 text-white p-2"
                     keyboardType="number-pad"
-                    placeholder="Digite a página" 
-                    placeholderTextColor={colors.zinc[400]} 
+                    placeholder="Digite uma página"
+                    placeholderTextColor={colors.zinc[400]}
                     onSubmitEditing={(event) => onSubmitPageHandler(Number(event.nativeEvent.text))}
                     clearButtonMode={"always"}
                 />
