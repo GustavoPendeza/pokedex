@@ -6,6 +6,7 @@ export declare global {
                 pokemonName: string;
             },
             search: undefined,
+            filter: undefined
         }
     }
 }
