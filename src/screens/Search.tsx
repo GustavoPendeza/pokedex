@@ -14,7 +14,7 @@ export function Search() {
     return (
         <View className="flex-1 bg-background">
 
-            <Header searchPage={true} />
+            <Header homePage={false} />
 
             <View>
                 <TextInput

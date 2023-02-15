@@ -6,7 +6,7 @@ export function Home() {
     return (
         <View className="flex-1 bg-background">
 
-            <Header searchPage={false} />
+            <Header homePage={true} />
 
             <PokemonList />
 

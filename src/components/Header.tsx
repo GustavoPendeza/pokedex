@@ -5,10 +5,10 @@ import colors from "tailwindcss/colors";
 import { BackButton } from "./BackButton";
 
 interface Props {
-    searchPage: boolean;
+    homePage: boolean;
 }
 
-export function Header({ searchPage = false }: Props) {
+export function Header({ homePage = true }: Props) {
     const { navigate } = useNavigation();
 
     return (
@@ -17,7 +17,7 @@ export function Header({ searchPage = false }: Props) {
             <Text className="text-lg text-white font-pokemon py-6">Pokédex</Text>
 
             {
-                searchPage === true ?
+                homePage === false ?
                     <View className="absolute mt-11 left-1">
                         <BackButton />
                     </View>
