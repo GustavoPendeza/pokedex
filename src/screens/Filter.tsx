@@ -57,8 +57,9 @@ export function Filter() {
             <View>
                 <ScrollView className="py-3 px-2 gap-x-2" horizontal showsHorizontalScrollIndicator={false}>
                     {
-                        apiResponse && apiResponse.results.map((type) => (
+                        apiResponse && apiResponse.results.map((type, index) => (
                             <TouchableOpacity
+                                key={index+type.name}
                                 activeOpacity={0.7}
                                 onPress={() => getType(type.name)}
                             >
