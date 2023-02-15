@@ -56,7 +56,7 @@ export function FilterPokemon({ typeName }: Props) {
                             {
                                 apiResponse.pokemon.map((pokemon, index) => (
                                     <Card
-                                        key={index}
+                                        key={index+pokemon.pokemon.name}
                                         name={pokemon.pokemon.name}
                                     />
                                 ))
