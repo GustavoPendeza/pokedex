@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ListRenderItemInfo, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Header } from "../components/Header";
-import { SearchPokemon } from "../components/SearchPokemon";
-import colors from "tailwindcss/colors";
 import { api } from "../lib/axios";
 import { Loading } from "../components/Loading";
 import { TypePokemon } from "../components/TypePokemon";
@@ -49,28 +47,31 @@ export function Filter() {
         )
     }
 
+    function renderItem({ item, index }: ListRenderItemInfo<Types>) {
+        return (
+            <TouchableOpacity
+                key={index + item.name}
+                activeOpacity={0.7}
+                onPress={() => getType(item.name)}
+            >
+                <TypePokemon typeName={item.name} />
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <View className="flex-1 bg-background">
 
             <Header homePage={false} />
 
-            <View>
-                <ScrollView className="py-3 px-2 gap-x-2" horizontal showsHorizontalScrollIndicator={false}>
-                    {
-                        apiResponse && apiResponse.results.map((type, index) => (
-                            <TouchableOpacity
-                                key={index+type.name}
-                                activeOpacity={0.7}
-                                onPress={() => getType(type.name)}
-                            >
-                                <TypePokemon
-                                    key={type.name}
-                                    typeName={type.name}
-                                />
-                            </TouchableOpacity>
-                        ))
-                    }
-                </ScrollView>
+            <View className="py-3 px-2">
+                <FlatList
+                    keyExtractor={(item) => item.name}
+                    data={apiResponse?.results}
+                    renderItem={renderItem}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                />
             </View>
 
             {
@@ -88,7 +89,6 @@ export function Filter() {
                     </View>
             }
 
-
-        </View>
+        </View >
     )
 }

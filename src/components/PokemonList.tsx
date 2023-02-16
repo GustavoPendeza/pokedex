@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, ListRenderItemInfo, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { api } from "../lib/axios";
 import { Card } from "./Card";
 import { Loading } from "./Loading";
@@ -87,6 +87,10 @@ export function PokemonList() {
         )
     }
 
+    function renderItem({ item }: ListRenderItemInfo<Pokemon>) {
+        return <Card name={item.name} />
+    }
+
     return (
         <View className="flex-1">
             <View className="flex-row justify-evenly items-center py-3">
@@ -127,20 +131,16 @@ export function PokemonList() {
                 </View>
             </View>
 
-            <ScrollView
+            <FlatList
+                className="px-5 mb-5 pt-1"
+                keyExtractor={(item) => item.name}
+                data={apiResponse?.results}
+                renderItem={renderItem}
+                horizontal={false}
+                numColumns={2}
+                columnWrapperStyle={{justifyContent: "space-between"}}
                 showsVerticalScrollIndicator={false}
-            >
-                <View className="flex-row flex-wrap justify-between px-5 pb-5 pt-1">
-                    {
-                        apiResponse && apiResponse.results.map((pokemon, index) => (
-                            <Card
-                                key={index}
-                                name={pokemon.name}
-                            />
-                        ))
-                    }
-                </View>
-            </ScrollView>
+            />
         </View>
     )
 }

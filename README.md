@@ -21,3 +21,13 @@ Projeto de uma Pokédex em React Native utilizando <a href="https://pokeapi.co" 
 <a href="https://www.pngall.com/pokeball-png/download/40242">
     Pokéball usada nas telas de filtro e pesquisa
 </a>
+
+### Fontes
+
+<a href="https://www.dafont.com/pokemon-classic.font">
+    Pokémon Classic
+</a>
+<br>
+<a href="https://www.dafont.com/retro-gaming.font">
+    Retro Gaming
+</a>
