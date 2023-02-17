@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { Alert, Image, Text, View } from "react-native";
+import { Alert, FlatList, Image, ListRenderItemInfo, Text, View } from "react-native";
 import { BackButton } from "../components/BackButton";
 import { typeColors } from "../utils/type-colors";
 import { Loading } from "../components/Loading";
@@ -72,6 +72,10 @@ export function Details() {
         )
     }
 
+    function renderItem({ item }: ListRenderItemInfo<Stat>) {
+        return <StatsBar statName={item.stat.name} statValue={item.base_stat} />
+    }
+
     return (
         <View className="flex-1 bg-background">
             <View
@@ -126,19 +130,20 @@ export function Details() {
 
                 <View className="items-center py-4">
                     <Text className="text-white text-2xl font-retro capitalize">
-                       <Feather name="bar-chart" size={30} color={colors.white} /> Status Base
+                        <Feather name="bar-chart" size={30} color={colors.white} /> Status Base
                     </Text>
                 </View>
 
-                <View>
-                    {
-                        pokemon?.stats.map((slot, i) => (
-                            <StatsBar key={i + slot.stat.name} statName={slot.stat.name} statValue={slot.base_stat} />
-                        ))
-                    }
-                </View>
-
             </View>
+
+            <FlatList
+                className="px-5"
+                keyExtractor={(item) => item.stat.name}
+                data={pokemon?.stats}
+                renderItem={renderItem}
+                horizontal={false}
+                showsVerticalScrollIndicator={false}
+            />
         </View>
     )
 }
