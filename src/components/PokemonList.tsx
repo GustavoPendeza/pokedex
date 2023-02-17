@@ -132,13 +132,13 @@ export function PokemonList() {
             </View>
 
             <FlatList
-                className="px-5 mb-5 pt-1"
+                className="mb-5 pt-1"
                 keyExtractor={(item) => item.name}
                 data={apiResponse?.results}
                 renderItem={renderItem}
                 horizontal={false}
                 numColumns={2}
-                columnWrapperStyle={{justifyContent: "space-between"}}
+                columnWrapperStyle={{ justifyContent: "space-evenly" }}
                 showsVerticalScrollIndicator={false}
             />
         </View>

@@ -55,13 +55,13 @@ export function FilterPokemon({ typeName }: Props) {
             {
                 apiResponse?.pokemon[0] ?
                     <FlatList
-                        className="px-5 mb-5 pt-1"
+                        className="mb-5 pt-1"
                         keyExtractor={(item) => item.pokemon.name}
                         data={apiResponse?.pokemon}
                         renderItem={renderItem}
                         horizontal={false}
                         numColumns={2}
-                        columnWrapperStyle={{ justifyContent: "space-between" }}
+                        columnWrapperStyle={{ justifyContent: "space-evenly" }}
                         showsVerticalScrollIndicator={false}
                         maxToRenderPerBatch={4}
                         removeClippedSubviews={true}

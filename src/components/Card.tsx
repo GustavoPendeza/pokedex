@@ -56,7 +56,7 @@ export function Card({ name }: Props) {
             onPress={() => navigate('details', { pokemonName: name })}
         >
             <View
-                className={`h-44 w-44 my-2.5 rounded-lg`}
+                className={`h-40 w-40 my-2.5 rounded-lg`}
                 style={{ backgroundColor: `${typeColors[pokemon?.types[0].type.name as keyof Object]}` }}
             >
                 <View className="h-5/6 items-center justify-center">
