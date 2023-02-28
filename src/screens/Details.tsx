@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { Alert, FlatList, Image, ListRenderItemInfo, Text, View } from "react-native";
+import { Alert, Dimensions, FlatList, Image, ListRenderItemInfo, ScrollView, Text, View } from "react-native";
 import { BackButton } from "../components/BackButton";
 import { typeColors } from "../utils/type-colors";
 import { Loading } from "../components/Loading";
@@ -9,9 +9,17 @@ import { TypePokemon } from "../components/TypePokemon";
 import { StatsBar } from "../components/StatsBar";
 import Feather from 'react-native-vector-icons/Feather';
 import colors from 'tailwindcss/colors'
+import { Abilities } from "../components/Abilities";
+import { EvolutionChain } from "../components/EvolutionChain";
 
 interface Params {
     pokemonName: string;
+}
+
+interface Ability {
+    ability: {
+        name: string;
+    }
 }
 
 interface Stat {
@@ -30,6 +38,7 @@ interface Type {
 
 interface Pokemon {
     id: number;
+    abilities: Ability[];
     stats: Stat[];
     types: Type[];
     base_experience: number;
@@ -44,7 +53,8 @@ export function Details() {
     const [loading, setLoading] = useState(true);
     const route = useRoute();
     const { pokemonName } = route.params as Params;
-    const [pokemon, setPokemon] = useState<Pokemon | null>(null)
+    const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+    const screenWidth = Dimensions.get('window').width;
 
     /**
      * Retorna as informações de um Pokémon específico
@@ -64,7 +74,7 @@ export function Details() {
 
     useEffect(() => {
         fetchPokemon()
-    }, [])
+    }, [pokemonName])
 
     if (loading) {
         return (
@@ -72,8 +82,12 @@ export function Details() {
         )
     }
 
-    function renderItem({ item }: ListRenderItemInfo<Stat>) {
+    function renderStats({ item }: ListRenderItemInfo<Stat>) {
         return <StatsBar statName={item.stat.name} statValue={item.base_stat} />
+    }
+
+    function renderAbilities({ item }: ListRenderItemInfo<Ability>) {
+        return <Abilities abilityName={item.ability.name} />
     }
 
     return (
@@ -127,23 +141,72 @@ export function Details() {
                         <Text className="text-white opacity-70">Altura</Text>
                     </View>
                 </View>
-
-                <View className="items-center py-4">
-                    <Text className="text-white text-2xl font-retro capitalize">
-                        <Feather name="bar-chart" size={30} color={colors.white} /> Status Base
-                    </Text>
-                </View>
-
             </View>
 
-            <FlatList
-                className="px-5"
-                keyExtractor={(item) => item.stat.name}
-                data={pokemon?.stats}
-                renderItem={renderItem}
-                horizontal={false}
-                showsVerticalScrollIndicator={false}
-            />
+            <ScrollView
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                bounces={false}
+            >
+
+                {/* STATUS BASE */}
+
+                <FlatList
+                    className="px-5"
+                    style={{ width: screenWidth }}
+                    keyExtractor={(item) => item.stat.name}
+                    data={pokemon?.stats}
+                    renderItem={renderStats}
+                    horizontal={false}
+                    showsVerticalScrollIndicator={false}
+                    ListHeaderComponent={() => (
+                        <View className="items-center py-4 bg-background">
+                            <Text className="text-white text-2xl font-retro capitalize">
+                                <Feather name="bar-chart" size={30} color={colors.white} /> Status Base
+                            </Text>
+
+                            <View className="absolute top-1/2 right-0">
+                                <Feather name="arrow-right" size={30} color={colors.white} />
+                            </View>
+                        </View>
+                    )}
+                    stickyHeaderIndices={[0]}
+                />
+
+                {/* HABILIDADES */}
+
+                <FlatList
+                    className="px-5"
+                    style={{ width: screenWidth }}
+                    keyExtractor={(item, index) => item.ability.name + index}
+                    data={pokemon?.abilities}
+                    renderItem={renderAbilities}
+                    horizontal={false}
+                    showsVerticalScrollIndicator={false}
+                    ListHeaderComponent={() => (
+                        <View className="items-center py-4 bg-background">
+                            <View className="absolute top-1/2 left-0">
+                                <Feather name="arrow-left" size={30} color={colors.white} />
+                            </View>
+
+                            <Text className="text-white text-2xl font-retro capitalize">
+                                <Feather name="list" size={30} color={colors.white} /> Habilidades
+                            </Text>
+
+                            <View className="absolute top-1/2 right-0">
+                                <Feather name="arrow-right" size={30} color={colors.white} />
+                            </View>
+                        </View>
+                    )}
+                    stickyHeaderIndices={[0]}
+                />
+
+                {/* EVOLUÇÕES */}
+
+                <EvolutionChain pokemonName={pokemonName} />
+
+            </ScrollView>
         </View>
     )
 }
