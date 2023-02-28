@@ -7,6 +7,11 @@ import colors from "tailwindcss/colors";
 export function Search() {
     const [search, setSearch] = useState<String | null>(null);
 
+    /**
+     * Guarda texto da busca do usuário
+     * 
+     * @param text Texto enviado na busca
+     */
     const getSearch = ((text: string) => {
         setSearch(text)
     })

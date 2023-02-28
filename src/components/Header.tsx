@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Text, TouchableOpacity, View } from "react-native";
 import Feather from 'react-native-vector-icons/Feather';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from "tailwindcss/colors";
 import { BackButton } from "./BackButton";
 
@@ -30,7 +29,7 @@ export function Header({ homePage = true }: Props) {
                                 onPress={() => navigate('filter')}
                                 className="ml-2"
                             >
-                                <Ionicons name="filter" size={32} color={colors.white} />
+                                <Feather name="sliders" size={32} color={colors.white} />
                             </TouchableOpacity>
                         </View>
                         <View className="absolute mt-11 right-6">

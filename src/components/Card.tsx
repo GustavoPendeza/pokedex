@@ -86,7 +86,7 @@ export function Card({ name }: Props) {
                             </>
                     }
                 </View>
-                <View className="h-1/6 items-center px-1">
+                <View className="h-1/6 items-center">
                     <Text className="text-white text-lg font-retro capitalize" numberOfLines={1}>
                         {pokemon?.name}
                     </Text>

@@ -22,6 +22,9 @@ export function FilterPokemon({ typeName }: Props) {
     const [loading, setLoading] = useState(true);
     const [apiResponse, setApiResponse] = useState<ApiResponse | null>(null);
 
+    /**
+     * Retorna uma lista de Pokémon pelo tipo deles
+     */
     async function fetchPokemonByType() {
         try {
             setLoading(true);
@@ -51,7 +54,6 @@ export function FilterPokemon({ typeName }: Props) {
 
     return (
         <View className='flex-1' >
-
             {
                 apiResponse?.pokemon[0] ?
                     <FlatList

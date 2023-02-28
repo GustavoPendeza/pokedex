@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FlatList, Image, ListRenderItemInfo, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ListRenderItemInfo, Text, TouchableOpacity, View } from "react-native";
 import { Header } from "../components/Header";
 import { api } from "../lib/axios";
 import { Loading } from "../components/Loading";
@@ -19,6 +19,9 @@ export function Filter() {
     const [type, setType] = useState<string | null>(null);
     const [apiResponse, setApiResponse] = useState<ApiResponse | null>(null);
 
+    /**
+     * Retorna os tipos de Pokémon
+     */
     async function fetchTypes() {
         try {
             setLoading(true);
@@ -31,6 +34,11 @@ export function Filter() {
         }
     }
 
+    /**
+     * Seleciona o tipo de Pokémon
+     * 
+     * @param typeName Nome do tipo
+     */
     const getType = ((typeName: string) => {
         if (typeName !== type) {
             setType(typeName)

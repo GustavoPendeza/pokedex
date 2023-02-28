@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Alert, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { api } from "../lib/axios";
 import { Card } from "./Card";
 import { Loading } from "./Loading";
