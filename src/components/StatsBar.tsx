@@ -24,7 +24,7 @@ export function StatsBar({ statName, statValue }: Props) {
         var value = sharedValue.value
         sharedValue.value = 0
         sharedValue.value = withTiming(value, {
-            duration: 500
+            duration: 800
         })
     }, [])
 
