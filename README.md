@@ -31,3 +31,10 @@ Projeto de uma Pokédex em React Native utilizando <a href="https://pokeapi.co" 
 <a href="https://www.dafont.com/retro-gaming.font">
     Retro Gaming
 </a>
+
+## Aparência do App
+
+<div>
+    <img alt="Tela Inicial" title="Tela Inicial" width="300px" src="https://user-images.githubusercontent.com/53589614/222225211-973e5b90-81e6-43dd-8e67-2e1abf4ff0c8.png">&nbsp;&nbsp;&nbsp;&nbsp;
+    <img alt="Tela Detalhes Pokémon" title="Tela Detalhes Pokémon" width="300px" src="https://user-images.githubusercontent.com/53589614/222226116-7311d279-ebf0-4563-91e8-8c072e07b5f6.png">
+</div>
